@@ -1,0 +1,107 @@
+@font-face {
+	font-family: "Pixel";
+	src: url(./assets/fonts/VCR_OSD_MONO_1.001.ttf)
+}
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+html{
+    width: 100%;
+    height: 100%;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 99vw;
+    height: 100vh;
+    font-family: "Pixel";
+    background-color: #E0E0E0;
+}
+header{
+    width: 100%;
+    height: 20vh;
+
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+.title{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.init-game{
+    width: 120px;
+    height: 70px;
+    align-self: flex-start;
+    background-color: #FAA40F;
+    color: #FF0A0A;
+    border-color: #FF0A0A;
+    border-radius: 10px;
+    font-family:"Pixel";
+    font-size: 24px;
+    outline: none;
+    cursor: pointer;
+}
+.stop-game{
+    width: 120px;
+    height: 70px;
+
+    background-color: #FAA40F;
+    color: #FF0A0A;
+    border-color: #FF0A0A;
+    border-radius: 10px;
+
+    font-family:"Pixel";
+    font-size: 24px;
+    outline: none;
+    cursor: pointer;
+
+}
+.score{
+    position: absolute;
+    left: 5%;
+
+    width: 150px;
+    height: 70px;
+
+    border: 3px solid black;
+}
+h1{
+    margin-top: 5%;
+    color: #FF0A0A ;
+    font-size: 78px;
+}
+h3{
+    color: #FAA40F;
+    font-size: 35px;
+    align-self: flex-end;
+
+    padding: 10px;
+}
+main{
+    width: 90vw;
+    height: 70vh;
+    padding: 15px;
+}
+.screen{
+    border: 3px solid black;
+    height: 100%;
+    width: 100%;
+
+}
+.balloon{
+    position: absolute;
+    max-width: 45px;
+    cursor: pointer;
+    
+}
+.none{
+    display:none;
+}
+
