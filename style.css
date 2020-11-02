@@ -63,21 +63,27 @@ header{
     cursor: pointer;
 
 }
-.score{
+.vidas{
     position: absolute;
     left: 5%;
 
-    width: 150px;
-    height: 70px;
+    padding-left: 10px;
+    width: 13vw;
+    height: 7vh;
 
     border: 3px solid black;
 }
-h1{
+.vida{
+    margin: 9px 10px;
+    width: 50px;
+    height: auto;
+}
+.boom-game{
     margin-top: 5%;
     color: #FF0A0A ;
     font-size: 78px;
 }
-h3{
+.version{
     color: #FAA40F;
     font-size: 35px;
     align-self: flex-end;
@@ -99,9 +105,84 @@ main{
     position: absolute;
     max-width: 45px;
     cursor: pointer;
+
+    animation: slideup 0.4s ease;
+    animation: floatup 2.5s linear forwards;
     
+    /* top: 22vh; */
 }
 .none{
     display:none;
 }
+@keyframes borda-cintilante{
+    0%{
+        border: 10px solid #FF0A0A;
+    }
+    50%{
+        border: 7px solid #FAA40F;
+    }
+    100%{
+        border:  10px solid #FF0A0A;
+    }
+}
+@keyframes flutuar {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+@keyframes floatup{
+    100% {
+      top: 22vh;
+    }
+}
+.voce-perdeu{
+    position: absolute;
+    top: 30vh;
+    z-index: 1;
+    width: 35vw;
+    height: 50vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    background-color: #E0E0E0;
+    animation: 1s ease-in-out infinite borda-cintilante;
+    border: 40px solid #FF0A0A;
+}
+.anunciado-perca{
+    color: #FF0A0A;
+    font-size: 78px;
+}
+.texto-desmotivante{
+    width: 60%;   
+
+    color: #FAA40F;
+    font-size: 30px;
+}
+.jogar-novamente{
+    width: 150px;
+    height: 85px;
+    
+    background-color: #FAA40F;
+    color: #FF0A0A;
+    border-color: #FF0A0A;
+    border-radius: 10px;
+    font-family:"Pixel";
+    font-size: 24px;
+    outline: none;
+    cursor: pointer;
+}
+.desfoque{
+    filter: blur(5px);
+    transition: all 1,5s linear;
+}
+
+
 

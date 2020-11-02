@@ -1,7 +1,18 @@
-const initButton = document.querySelector(".init-game")
-const stopButton = document.querySelector(".stop-game")
-const tela = document.querySelector(".screen")
-const cabecalho = document.querySelector(".header")
+const initButton = document.querySelector(".init-game") //Usando
+const stopButton = document.querySelector(".stop-game") //Usando
+const tela = document.querySelector(".screen") //Usando
+//const cabecalho = document.querySelector(".header") 
+const live = document.querySelector(".vida") //Usando
+const vidas = document.querySelector(".vidas")
+const contadorDeVidas = [1, 1, 1] //Usando
+const contadorBalloon = []
+const limiteBalloon = 5
+const avisoPerdeu = document.querySelector(".voce-perdeu") //Usando
+const corpo = document.querySelector("body")
+
+const vida01 = document.getElementById("vida1")
+const vida02 = document.getElementById("vida2")
+const vida03 = document.getElementById("vida3")
 
 
 initButton.addEventListener("click", function(){
@@ -24,8 +35,8 @@ function initGame() {
         initButton.classList.remove("none")
         stopButton.classList.add("none")
     })
+    
 }
-
 
 function createBalloon(){
     const balloon = document.createElement("img")
@@ -42,13 +53,13 @@ function createBalloon(){
 
     //minimo left 4.65, top 22
     //max left 92.3 top 84 
-
+    // 62
     const larguraEfetiva = 87.65 
-    const alturaEfetiva = 62
+    const alturaEfetiva = 34
 
     const positionLeft = (Math.random() * larguraEfetiva) + 4.65
-    const positionTop = (Math.random()* alturaEfetiva) + 22
-
+    //const positionTop = (Math.random()* alturaEfetiva) + 22 normal
+    const positionTop = (Math.random()* alturaEfetiva) + 50
     balloon.style.left = positionLeft + "vw" 
     balloon.style.top = positionTop + "vh"
 
@@ -56,11 +67,80 @@ function createBalloon(){
     tela.appendChild(balloon) 
 
     balloon.addEventListener("click", function(){
-        removeBallon(this)
+        removeElement(this)
+        contadorBalloon.pop()
     })
+    contadorBalloon.push(1)
+    console.log(contadorBalloon.length)
+
+    if (contadorBalloon.length >= limiteBalloon){
+        removeLive()
+    }
 }
-function removeBallon(element){
+function removeElement(element){
     element.remove()
 }
+
+function vocePerdeu(){
+    const textContentYou = "You Lose!"
+    const textContentSpan = "I'm sorry, but you're not very good at doing this"
+    const textContentPlay = "Play Again!"
+
+    const youLose = document.createElement("div")
+    youLose.setAttribute("class", "voce-perdeu")
+
+    const spanLose = document.createElement("h2")
+    spanLose.setAttribute("class", "anunciado-perca")
+    spanLose.innerText = textContentYou
+
+    const downText = document.createElement("p")
+    downText.setAttribute("class", "texto-desmotivante")
+    downText.innerText = textContentSpan
+
+    const playAgain = document.createElement("button")
+    playAgain.setAttribute("class", "jogar-novamente")
+    playAgain.innerText = textContentPlay
+
+    youLose.appendChild(spanLose)
+    youLose.appendChild(downText)
+    youLose.appendChild(playAgain)
+
+    corpo.appendChild(youLose)
+
+    playAgain.addEventListener("click", function(){
+        vidas.appendChild(vida01)
+        vidas.appendChild(vida02)
+        vidas.appendChild(vida03)
+        contadorDeVidas.push(1, 1, 1)
+        
+        
+        removeElement(youLose)
+    })
+}
+function removeLive(){
+    
+    if(contadorDeVidas.length == 3){
+        vida01.remove()
+        contadorDeVidas.pop()
+    }else if(contadorDeVidas.length == 2){
+        vida02.remove()
+        contadorDeVidas.pop()
+    }else if(contadorDeVidas.length == 1){
+        vida03.remove()
+        contadorDeVidas.pop()
+    }
+    
+    if(contadorDeVidas.length == 0){
+        vocePerdeu()
+    }
+}
+
+
+
+
+//window.alert(quantidadeVidas)
+
+
+
 
 
