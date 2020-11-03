@@ -10,31 +10,45 @@ const limiteBalloon = 5
 const avisoPerdeu = document.querySelector(".voce-perdeu") //Usando
 const corpo = document.querySelector("body")
 
+const playAgain = document.createElement("button")
+
 const vida01 = document.getElementById("vida1")
 const vida02 = document.getElementById("vida2")
 const vida03 = document.getElementById("vida3")
-
 
 initButton.addEventListener("click", function(){
     initGame()
     //initButton.remove()
     initButton.classList.add("none")
-    stopButton.classList.remove("none")
+    //stopButton.classList.remove("none")
 
 })
 
 function initGame() {
-   const idInterval = setInterval(createBalloon, 750)
+    const idInterval = setInterval(manageGame, 750)
+
+    function manageGame(){
+        if(contadorDeVidas.length == 0){
+            vocePerdeu()
+            stopGame()
+            
+        }
+        createBalloon()
+
+    }
+
 
    function stopGame(){
        clearInterval(idInterval)
    } 
+    
+   
 
-   stopButton.addEventListener("click", function(){
+   /* stopButton.addEventListener("click", function(){
         stopGame()    
         initButton.classList.remove("none")
         stopButton.classList.add("none")
-    })
+    }) */
     
 }
 
@@ -76,11 +90,11 @@ function createBalloon(){
     if (contadorBalloon.length >= limiteBalloon){
         removeLive()
     }
+    
 }
 function removeElement(element){
     element.remove()
 }
-
 function vocePerdeu(){
     const textContentYou = "You Lose!"
     const textContentSpan = "I'm sorry, but you're not very good at doing this"
@@ -97,7 +111,7 @@ function vocePerdeu(){
     downText.setAttribute("class", "texto-desmotivante")
     downText.innerText = textContentSpan
 
-    const playAgain = document.createElement("button")
+    //const playAgain = document.createElement("button")
     playAgain.setAttribute("class", "jogar-novamente")
     playAgain.innerText = textContentPlay
 
@@ -108,32 +122,39 @@ function vocePerdeu(){
     corpo.appendChild(youLose)
 
     playAgain.addEventListener("click", function(){
+        //const todosBalloon = tela.removeChild("img")
+
         vidas.appendChild(vida01)
         vidas.appendChild(vida02)
         vidas.appendChild(vida03)
         contadorDeVidas.push(1, 1, 1)
         
+        initButton.classList.remove("none")
         
         removeElement(youLose)
     })
-}
-function removeLive(){
     
-    if(contadorDeVidas.length == 3){
+    }
+
+function removeLive(){
+    //TESTE
+    //createBalloon()
+    //TESTE
+    if(contadorDeVidas.length == 1){
         vida01.remove()
         contadorDeVidas.pop()
     }else if(contadorDeVidas.length == 2){
         vida02.remove()
         contadorDeVidas.pop()
-    }else if(contadorDeVidas.length == 1){
+    }else if(contadorDeVidas.length == 3){
         vida03.remove()
         contadorDeVidas.pop()
     }
-    
-    if(contadorDeVidas.length == 0){
+    /* if(contadorDeVidas.length == 0){
         vocePerdeu()
+    } */
     }
-}
+
 
 
 
